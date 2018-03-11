@@ -1,1 +1,1 @@
-/home/krockwell/.function
+mk () { mkdir "$@" && cd "$@" }

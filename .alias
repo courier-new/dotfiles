@@ -1,1 +1,10 @@
-/home/krockwell/.alias
+# List declared aliases, functions, paths
+alias aliases='alias | sed "s/=.*//"'
+alias paths='echo -e ${PATH//:/\\n}'
+
+# Directory listing/traversal
+alias l="ls -la"
+alias lds="ls -ld */"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
