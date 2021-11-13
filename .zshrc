@@ -1,20 +1,12 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/krockwell/.oh-my-zsh
+export ZSH=/Users/krockwell/.oh-my-zsh
 
+export SRC_ENDPOINT="https://sourcegraph.test:3443"
+export SRC_ACCESS_TOKEN="f1f50041b1b8581b8c6a6419d5c76616a9e8302a"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -54,22 +46,28 @@ ZSH_THEME="robbyrussell"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+autoload -U +X bashcompinit && bashcompinit
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  rails
+  mix
+  react-native  
   npm
-  pip
-  python
+  asdf
+  docker
+  dotenv
   yarn
 )
 
 source $ZSH/oh-my-zsh.sh
 
+# --------------------------------------------------------------------------------
 # User configuration
+# --------------------------------------------------------------------------------
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -97,36 +95,43 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ubuntu-version="lsb_release -a"
-alias atom='/mnt/c/Windows/System32/cmd.exe /c "atom"'
+
+# Load aliases
+if [ -f ~/.alias ]; then
+  . ~/.alias
+fi
 
 # Auto-enable zsh syntax highlighting in zsh
-source /home/krockwell/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /Users/krockwell/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Add rbenv to path
-export PATH="$HOME/.rbenv/bin:$PATH"
-# Initialize rbenv on opening a new shell
-eval "$(rbenv init -)"
-# Add ruby-build to path
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
+# Add python to path
+export PATH="$PATH:/Users/krockwell/Library/Python/2.7/bin"
 
-# Add nvm to path
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# Add postgres to path
+export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
 
-# Load avn
-[[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh"
+# Use Java 8 for android dev by default
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
 
-# Load aliases and functions
-if [ -f "$HOME/.alias" ]
-then
-  . "$HOME/.alias"
-fi
-if [ -f "$HOME/.function" ]
-then
-  . "$HOME/.function"
-fi
+# Add android tools to path
+export ANDROID_HOME=${HOME}/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-# Readable lists
-LS_COLORS="ow=01;36;40" && export LS_COLORS
+# Save iex history
+export ERL_AFLAGS="-kernel shell_history enabled"
+
+export PGDATA_DIR="$HOME/sourcegraph/PGDATA_DIR/"
+
+# Add global yarn to path
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
+
+export GOPATH="$HOME/go"
+export GOBIN="$GOPATH/bin"
+export PATH="$GOBIN:$PATH"

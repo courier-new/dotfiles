@@ -108,13 +108,13 @@ module.exports = {
       // - Make sure to use a full path if the binary name doesn't work
       // - Remove `--login` in shellArgs
       // shell: 'C:\\Windows\\System32\\bash.exe',
-      shell: 'wsl.exe',
+      //  shell: 'wsl.exe',
 
       // for setting shell arguments (i.e. for using interactive shellArgs: ['-i'])
       // by default ['--login'] will be used
       // shellArgs: ['--login'],
       // move from Windows home (mnt/c/Users/kelli) to Ubuntu home
-      shellArgs: ['~'],
+      // shellArgs: ['~'],
 
       // for environment variables
       env: {},

@@ -8,3 +8,13 @@ alias lds="ls -ld */"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias ~.='cd $(git rev-parse --show-toplevel)'
+
+# Git branch fuzzy search
+alias gco='git checkout $(git branch | grep -v $(git rev-parse --abbrev-ref HEAD) | fzf)'
+
+# Nuke node modules
+alias nuke='rm -rf node_modules ; if [ -f yarn.lock ]; then yarn install; else npm install; fi;'
+
+# Get ip address
+alias ip='ifconfig | grep "inet 192"'

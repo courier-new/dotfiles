@@ -1,8 +1,20 @@
 [filter "lfs"]
         required = true
         clean = git-lfs clean -- %f
-        smudge = git-lfs smudge -- %f
-        process = git-lfs filter-process
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
 [user]
-        name = courier-new
-        email = kellirockwell@mail.com
+	name = courier-new
+	email = kelli@sourcegraph.com
+[core]
+	excludesfile = /Users/krockwell/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/krockwell/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/krockwell/.stCommitMsg
+[fetch]
+	prune = true
