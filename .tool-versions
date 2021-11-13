@@ -1,0 +1,8 @@
+elixir 1.8.1-otp-21
+erlang 22.3.4.12
+nodejs 14.16.0
+python 3.6.4
+ruby 2.7.2
+yarn 1.19.1
+adr-tools 3.0.0
+golang 1.16
