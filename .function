@@ -1,1 +1,1 @@
-mk () { mkdir "$@" && cd "$@" }
+mk () { mkdir -p "$@" && cd "$@" }

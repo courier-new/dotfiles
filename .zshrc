@@ -1,10 +1,6 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/krockwell/.oh-my-zsh
+export ZSH=/Users/kellirockwell/.oh-my-zsh
 
-export SRC_ENDPOINT="https://sourcegraph.test:3443"
-export SRC_ACCESS_TOKEN="f1f50041b1b8581b8c6a6419d5c76616a9e8302a"
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
@@ -17,6 +13,9 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
+
+# Auto-accepts the update prompt when running bi-weekly auto-update check finds a newer version.
+DISABLE_UPDATE_PROMPT=true
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -54,13 +53,12 @@ autoload -U +X bashcompinit && bashcompinit
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  mix
-  react-native  
   npm
   asdf
   docker
   dotenv
   yarn
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -101,37 +99,33 @@ if [ -f ~/.alias ]; then
   . ~/.alias
 fi
 
+# Load functions
+if [ -f ~/.function ]; then
+  . ~/.function
+fi
+
 # Auto-enable zsh syntax highlighting in zsh
-source /Users/krockwell/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Add python to path
-export PATH="$PATH:/Users/krockwell/Library/Python/2.7/bin"
-
-# Add postgres to path
-export PATH="/usr/local/opt/postgresql@9.5/bin:$PATH"
-
-# Use Java 8 for android dev by default
-export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
-
-# Add android tools to path
-export ANDROID_HOME=${HOME}/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/emulator
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/tools/bin
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Save iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
 
-export PGDATA_DIR="$HOME/sourcegraph/PGDATA_DIR/"
+# Load asdf
+. $(brew --prefix asdf)/libexec/asdf.sh
 
-# Add global yarn to path
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-
-
-. $HOME/.asdf/asdf.sh
-. $HOME/.asdf/completions/asdf.bash
-
-export GOPATH="$HOME/go"
+# Also add Go binary to PATH since VSCode cannot discover the asdf shim on its own
+export GOPATH="$HOME/.go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
+PROG=sg source /Users/kellirockwell/.sourcegraph/sg.zsh_autocomplete
+source /Users/kellirockwell/google-cloud-sdk/completion.zsh.inc
+source /Users/kellirockwell/google-cloud-sdk/path.zsh.inc
+
+# Set the color for ZSH auto-suggestion highlight style
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#d1d1d1"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+# Bind tab to accept + execute for zsh-autosuggestions
+bindkey '^[[Z'  complete-word           # shift + tab  | complete
+bindkey '^I'    autosuggest-execute     # tab          | autosuggest
+
+# Invoke fuzzy command history search with ctrl+r. ctrl+r to cycle backwards and ctrl+s to cycle forwards.

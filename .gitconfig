@@ -6,8 +6,6 @@
 [user]
 	name = courier-new
 	email = kelli@sourcegraph.com
-[core]
-	excludesfile = /Users/krockwell/.gitignore_global
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -18,3 +16,5 @@
 	template = /Users/krockwell/.stCommitMsg
 [fetch]
 	prune = true
+[init]
+	defaultBranch = main
