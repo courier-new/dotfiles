@@ -1,0 +1,32 @@
+# https://starship.rs/config/
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[character]
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
+
+[directory]
+style = 'bold black'
+
+[git_branch]
+symbol = ' '
+style = 'bold blue'
+
+[git_status]
+format = '([$staged$modified$deleted]($style) )'
+stashed = ''
+renamed = ''
+staged = ''
+modified = ' '
+deleted = ' '
+style='bold purple'
+
+[golang]
+symbol = 'go '
+
+[python]
+symbol = '󰌠 '
+
+[gcloud]
+disabled = true 
