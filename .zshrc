@@ -2,7 +2,7 @@
 export ZSH=/Users/kellirockwell/.oh-my-zsh
 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="spaceship"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -129,3 +129,6 @@ bindkey '^[[Z'  complete-word           # shift + tab  | complete
 bindkey '^I'    autosuggest-execute     # tab          | autosuggest
 
 # Invoke fuzzy command history search with ctrl+r. ctrl+r to cycle backwards and ctrl+s to cycle forwards.
+
+# Load Starship config + prompt
+eval "$(starship init zsh)"

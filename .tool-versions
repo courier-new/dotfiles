@@ -6,3 +6,4 @@ ruby 2.7.4
 yarn 1.22.17
 adr-tools 3.0.0
 golang 1.17.1
+pnpm 7.24.2
