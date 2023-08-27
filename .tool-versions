@@ -1,9 +1,6 @@
-elixir 1.8.1-otp-21
-erlang 22.3.4.12
-nodejs 16.13.0
+nodejs 20.5.1
 python 3.10.0
 ruby 2.7.4
 yarn 1.22.17
-adr-tools 3.0.0
-golang 1.17.1
-pnpm 7.24.2
+golang 1.21.0
+pnpm 8.7.0
