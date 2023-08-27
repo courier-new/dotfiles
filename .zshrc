@@ -59,6 +59,7 @@ plugins=(
   dotenv
   yarn
   zsh-autosuggestions
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -85,6 +86,13 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
+# Load asdf
+. "$HOME/.asdf/asdf.sh"
+# append completions to fpath
+fpath=(${ASDF_DIR}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -104,14 +112,8 @@ if [ -f ~/.function ]; then
   . ~/.function
 fi
 
-# Auto-enable zsh syntax highlighting in zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
 # Save iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
-
-# Load asdf
-. $(brew --prefix asdf)/libexec/asdf.sh
 
 # Also add Go binary to PATH since VSCode cannot discover the asdf shim on its own
 export GOPATH="$HOME/.go"
