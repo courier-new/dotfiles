@@ -5,7 +5,7 @@
 	process = git-lfs filter-process
 [user]
 	name = Kelli Rockwell
-	email = kelli@sourcegraph.com
+	email = kellirockwell@gmail.com
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
