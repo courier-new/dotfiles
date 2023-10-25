@@ -2,11 +2,26 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
+add_newline = false
 command_timeout = 1000
+format="""$os$all"""
 
 [character]
-success_symbol = '[➜](bold green)'
-error_symbol = '[➜](bold red)'
+# Prompt character not necessary with Warp, it makes a new line
+# Error is highlighted
+disabled = true
+# success_symbol = '[➜](bold green)'
+# error_symbol = '[➜](bold red)'
+
+[os]
+format = '[$symbol](bold white) '   
+disabled = false
+
+[os.symbols]
+Windows = ' '
+Arch = '󰣇'
+Ubuntu = ''
+Macos = '󰀵'
 
 [directory]
 style = 'bold black'
@@ -23,6 +38,9 @@ staged = ''
 modified = ' '
 deleted = ' '
 style='bold purple'
+
+[bun]
+symbol = '🥟 '
 
 [golang]
 symbol = 'go '
