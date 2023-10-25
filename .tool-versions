@@ -3,4 +3,6 @@ python 3.11.5
 ruby 2.7.4
 yarn 1.22.17
 golang 1.21.1
-pnpm 8.7.4
+pnpm 8.7.5
+bun 1.0.3
+rust 1.68.2
