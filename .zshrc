@@ -119,9 +119,13 @@ export ERL_AFLAGS="-kernel shell_history enabled"
 export GOPATH="$HOME/.go"
 export GOBIN="$GOPATH/bin"
 export PATH="$GOBIN:$PATH"
-PROG=sg source /Users/kellirockwell/.sourcegraph/sg.zsh_autocomplete
-source /Users/kellirockwell/google-cloud-sdk/completion.zsh.inc
-source /Users/kellirockwell/google-cloud-sdk/path.zsh.inc
+
+# Add Begin CLI tools to PATH
+# For seattlejs repo
+# https://begin.com/docs/getting-started/installing-the-begin-cli
+export BEGIN_INSTALL="/Users/kellirockwell/.begin"
+export PATH="$BEGIN_INSTALL:$PATH"
+
 
 # Set the color for ZSH auto-suggestion highlight style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#d1d1d1"
