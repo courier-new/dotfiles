@@ -24,7 +24,7 @@ Ubuntu = ''
 Macos = '󰀵'
 
 [directory]
-style = 'bold black'
+style = 'bold bright-black'
 
 [git_branch]
 symbol = ' '
