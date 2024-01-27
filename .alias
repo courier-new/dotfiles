@@ -16,6 +16,15 @@ alias gco='git checkout $(git branch | grep -v $(git rev-parse --abbrev-ref HEAD
 # Git delete all local branches that have been merged into main
 alias gitnuke='git branch --merged | grep -v \* | xargs git branch -D'
 
+# Commit changes temporarily under a "WIP" commit message
+alias gitwip='git add -A && git commit -m "WIP"'
+
+# Output a more concise git status report
+alias gitstatus='git status --short --branch'
+
+# Undo the last commit
+alias gitundo='git reset HEAD~'
+
 # Nuke node modules
 alias nuke='rm -rf node_modules ; if [ -f yarn.lock ]; then yarn install; else npm install; fi;'
 
