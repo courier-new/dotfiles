@@ -1,1 +1,5 @@
 mk () { mkdir -p "$@" && cd "$@" }
+
+brewopen () {
+    open "https://formulae.brew.sh/formula/$1"
+}
