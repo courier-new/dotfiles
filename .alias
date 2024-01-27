@@ -12,6 +12,8 @@ alias ip='ifconfig | grep "inet 192"'
 # Search command history for a term
 alias hg='history | grep'
 
+alias resource='source ~/.zshrc'
+
 # -----------------------------
 # File system
 # -----------------------------
