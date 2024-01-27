@@ -6,3 +6,5 @@ golang 1.21.1
 pnpm 8.7.5
 bun 1.0.7
 rust 1.68.2
+erlang 26.2.1
+elixir 1.16.0-otp-26
