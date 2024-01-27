@@ -103,14 +103,8 @@ autoload -Uz compinit && compinit
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Load aliases
-if [ -f ~/.alias ]; then
-  . ~/.alias
-fi
-
-# Load functions
-if [ -f ~/.function ]; then
-  . ~/.function
-fi
+. ~/.alias
+. ~/.function
 
 # Save iex history
 export ERL_AFLAGS="-kernel shell_history enabled"
