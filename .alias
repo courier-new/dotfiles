@@ -32,6 +32,9 @@ alias ~.='cd $(git rev-parse --show-toplevel)'
 # Git
 # -----------------------------
 
+# Use hub (wrapper with easy to use github extensions https://hub.github.com/) instead of git
+alias git=hub
+
 # Git branch fuzzy search
 alias gitco='git checkout $(git branch | grep -v $(git rev-parse --abbrev-ref HEAD) | fzf)'
 
