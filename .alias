@@ -27,6 +27,7 @@ alias lds="ls -ld */"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
+alias ~='cd ~'
 alias ~.='cd $(git rev-parse --show-toplevel)'
 
 
