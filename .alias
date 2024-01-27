@@ -1,6 +1,23 @@
+# -----------------------------
+# Util
+# -----------------------------
+
 # List declared aliases, functions, paths
 alias aliases='alias | sed "s/=.*//"'
 alias paths='echo -e ${PATH//:/\\n}'
+
+# Get ip address
+alias ip='ifconfig | grep "inet 192"'
+
+# Search command history for a term
+alias hg='history | grep'
+
+# -----------------------------
+# File system
+# -----------------------------
+
+# Avoid the inevitable
+alias rm=trash
 
 # Directory listing/traversal
 alias l="ls -la"
@@ -10,8 +27,13 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~.='cd $(git rev-parse --show-toplevel)'
 
+
+# -----------------------------
+# Git
+# -----------------------------
+
 # Git branch fuzzy search
-alias gco='git checkout $(git branch | grep -v $(git rev-parse --abbrev-ref HEAD) | fzf)'
+alias gitco='git checkout $(git branch | grep -v $(git rev-parse --abbrev-ref HEAD) | fzf)'
 
 # Git delete all local branches that have been merged into main
 alias gitnuke='git branch --merged | grep -v \* | xargs git branch -D'
@@ -20,16 +42,14 @@ alias gitnuke='git branch --merged | grep -v \* | xargs git branch -D'
 alias gitwip='git add -A && git commit -m "WIP"'
 
 # Output a more concise git status report
-alias gitstatus='git status --short --branch'
+alias gits='git status --short --branch'
 
 # Undo the last commit
 alias gitundo='git reset HEAD~'
 
+# -----------------------------
+# JS/TS
+# -----------------------------
+
 # Nuke node modules
 alias nuke='rm -rf node_modules ; if [ -f yarn.lock ]; then yarn install; else npm install; fi;'
-
-# Get ip address
-alias ip='ifconfig | grep "inet 192"'
-
-# Search command history for a term
-alias hg='history | grep'
