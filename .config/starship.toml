@@ -3,7 +3,7 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
 add_newline = false
-command_timeout = 1000
+command_timeout = 2000
 format="""$os$all"""
 
 [character]
@@ -44,6 +44,9 @@ symbol = '🥟 '
 
 [golang]
 symbol = 'go '
+
+[package]
+disabled = true
 
 [python]
 symbol = '󰌠 '
