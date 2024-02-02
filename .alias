@@ -18,9 +18,6 @@ alias resource='source ~/.zshrc'
 # File system
 # -----------------------------
 
-# Avoid the inevitable
-alias rm=trash
-
 # Directory listing/traversal
 alias l="ls -la"
 alias lds="ls -ld */"
