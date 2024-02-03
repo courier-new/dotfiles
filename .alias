@@ -19,7 +19,7 @@ alias resource='source ~/.zshrc'
 # -----------------------------
 
 # Directory listing/traversal
-alias l="ls -la"
+alias l="ls -lah"
 alias lds="ls -ld */"
 alias ..="cd .."
 alias ...="cd ../.."
