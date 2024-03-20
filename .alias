@@ -46,6 +46,9 @@ alias gitwip='git add -A && git commit -m "WIP"'
 # Output a more concise git status report
 alias gits='git status --short --branch'
 
+# Stage everything to be committed
+alias gita='git add -A'
+
 # Undo the last commit
 alias gitundo='git reset HEAD~'
 
