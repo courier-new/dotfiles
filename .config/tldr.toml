@@ -1,0 +1,113 @@
+# tlrc client will not recognize this file if it's used as a symlink. I've added an alias
+# to always invoke tldr as tldr --config ~/dotfiles/.config/tldr.toml
+
+[cache]
+# Override the cache directory.
+# dir = "/path/to/cache"
+# Automatically update the cache when it is if it is older than max_age hours.
+auto_update = true
+max_age = 336
+# Specify a list of desired page languages. If it is empty, languages specified in
+# the LANG and LANGUAGE environment variables are downloaded.
+# English is implied and will always be downloaded.
+# You can see a list of language codes here: https://github.com/tldr-pages/tldr
+# Example: ["de", "pl"]
+languages = []
+
+[output]
+# Show the title in the rendered page.
+show_title = true
+# Show the platform name ('common', 'linux', etc.) in the title.
+platform_title = false
+# Prefix descriptions of examples with hyphens.
+show_hyphens = false
+# Use a custom string instead of a hyphen.
+example_prefix = "- "
+# Strip empty lines from output.
+compact = false
+# Print pages in raw markdown.
+raw_markdown = false
+
+# Number of spaces to put before each line of the page.
+[indent]
+# Command name.
+title = 2
+# Command description.
+description = 2
+# Descriptions of examples.
+bullet = 2
+# Example command invocations.
+example = 4
+
+# Style for the title of the page (command name).
+[style.title]
+# Fixed colors:       "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "default"
+# 256color ANSI code: { color256 = 50 }
+# RGB:                { rgb = [0, 255, 255] }
+color = "default"
+background = "default"
+bold = true
+underline = false
+italic = false
+dim = false
+strikethrough = false
+
+# Style for the description of the page.
+[style.description]
+color = "magenta"
+background = "default"
+bold = false
+underline = false
+italic = false
+dim = false
+strikethrough = false
+
+# Style for descriptions of examples.
+[style.bullet]
+color = "default"
+background = "default"
+bold = false
+underline = false
+italic = false
+dim = false
+strikethrough = false
+
+# Style for command examples.
+[style.example]
+color = "cyan"
+background = "default"
+bold = true
+underline = false
+italic = false
+dim = false
+strikethrough = false
+
+# Style for URLs inside the description.
+[style.url]
+color = "blue"
+background = "default"
+bold = false
+underline = true
+italic = false
+dim = false
+strikethrough = false
+
+# Style for text surrounded by backticks (`).
+[style.inline_code]
+color = "cyan"
+background = "default"
+bold = true
+underline = false
+italic = false
+dim = false
+strikethrough = false
+
+# Style for placeholders inside command examples.
+[style.placeholder]
+color = "cyan"
+background = "default"
+bold = false
+underline = false
+italic = false
+dim = true
+strikethrough = false

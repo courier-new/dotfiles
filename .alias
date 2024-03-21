@@ -12,6 +12,9 @@ alias ip='ifconfig | grep "inet 192"'
 # Search command history for a term
 alias hg='history | grep'
 
+# Set custom config file path for invokations of tldr
+alias tl='tldr --config ~/dotfiles/.config/tldr.toml'
+
 alias resource='source ~/.zshrc'
 
 # -----------------------------
