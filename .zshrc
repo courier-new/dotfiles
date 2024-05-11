@@ -126,6 +126,8 @@ export PATH="$GOBIN:$PATH"
 export BEGIN_INSTALL="/Users/kellirockwell/.begin"
 export PATH="$BEGIN_INSTALL:$PATH"
 
+# Add Homebrew-managed PG to PATH
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 
 # Set the color for ZSH auto-suggestion highlight style
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#d1d1d1"
