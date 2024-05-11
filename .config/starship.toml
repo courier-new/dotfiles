@@ -31,12 +31,13 @@ symbol = ' '
 style = 'bold blue'
 
 [git_status]
+disabled = true
 format = '([$staged$modified$deleted]($style) )'
 stashed = ''
 renamed = ''
 staged = ''
-modified = ' '
-deleted = ' '
+modified = ''
+deleted = ''
 style='bold purple'
 
 [bun]
