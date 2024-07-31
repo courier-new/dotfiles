@@ -23,4 +23,24 @@
 [alias]
 	undo = reset HEAD~
         a = add -A
-        s = status --short --branch	
+        s = status --short --branch
+	p = "!f() { \
+        force=false; \
+        new_args=(); \
+        for arg in \"$@\"; do \
+            if [ \"$arg\" = \"--force\" ] || [ \"$arg\" = \"-f\" ]; then \
+                force=true; \
+                new_args+=(--force-with-lease); \
+            else \
+                new_args+=(\"$arg\"); \
+            fi; \
+        done; \
+        if [ \"$force\" = true ]; then \
+            echo \"Warning: Force flag detected. Using --force-with-lease instead.\"; \
+            echo \"Executing: git push ${new_args[@]}\"; \
+            git push \"${new_args[@]}\"; \
+        else \
+            echo \"Executing: git push $@\"; \
+            git push \"$@\"; \
+        fi; \
+    }; f"
