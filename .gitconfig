@@ -20,3 +20,7 @@
 	defaultBranch = main
 [rerere]
 	enabled = true
+[alias]
+	undo = reset HEAD~
+        a = add -A
+        s = status --short --branch	

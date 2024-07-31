@@ -9,6 +9,9 @@ alias paths='echo -e ${PATH//:/\\n}'
 # Get ip address
 alias ip='ifconfig | grep "inet 192"'
 
+# List subdirectory sizes, sorted largest to smallest
+alias subdirsize='find . -mindepth 1 -maxdepth 1 -type d -exec du -sh {} + | sort -rh'
+
 # Search command history for a term
 alias hg='history | grep'
 
@@ -55,6 +58,9 @@ alias gita='git add -A'
 
 # Undo the last commit
 alias gitundo='git reset HEAD~'
+
+# Push to all unique remotes
+alias gitpushall='git remote | xargs -L1 git push --all'
 
 # -----------------------------
 # JS/TS
