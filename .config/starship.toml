@@ -7,11 +7,11 @@ command_timeout = 2000
 format="""$os$all"""
 
 [character]
-# Prompt character not necessary with Warp, it makes a new line
+# Prompt character not necessary with Warp if in mode where prompt is already split onto a new line
 # Error is highlighted
-disabled = true
-# success_symbol = '[➜](bold green)'
-# error_symbol = '[➜](bold red)'
+# disabled = true
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
 
 [os]
 format = '[$symbol](bold white) '   
