@@ -44,3 +44,5 @@
             git push \"$@\"; \
         fi; \
     }; f"
+[push]
+	autoSetupRemote = true
