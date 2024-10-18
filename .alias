@@ -18,7 +18,7 @@ alias hg='history | grep'
 # Set custom config file path for invokations of tldr
 alias tldr='tldr --config ~/dotfiles/.config/tldr.toml'
 
-alias resource='source ~/.zshrc'
+alias resource='exec zsh'
 
 # -----------------------------
 # File system
