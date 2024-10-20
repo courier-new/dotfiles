@@ -15,6 +15,13 @@ fpath=(${ASDF_DIR}/completions $fpath)
 # Load aliases
 . ~/.alias
 . ~/.function
+# If local aliases exist, load them, too.
+if [ -f ~/.alias.local ]; then
+  . ~/.alias.local
+fi
+if [ -f ~/.function.local ]; then
+  . ~/.function.local
+fi
 
 # Activate direnv if available
 if type direnv &>/dev/null; then
