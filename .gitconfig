@@ -1,19 +1,11 @@
 [filter "lfs"]
-        required = true
-        clean = git-lfs clean -- %f
+    required = true
+    clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 [user]
 	name = Kelli Rockwell
 	email = kellirockwell@gmail.com
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Users/krockwell/Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
-[commit]
-	template = /Users/krockwell/.stCommitMsg
 [fetch]
 	prune = true
 [init]
@@ -21,28 +13,66 @@
 [rerere]
 	enabled = true
 [alias]
+    # Enter interactive branch checkout with fuzzy search.
+    co = "!git checkout $(git branch | grep -v $(git rev-parse --abbrev-ref HEAD) | fzf)"
+    # Output a more concise git status report.
+    s = status --short --branch
+
+    # Staging changes
+    # Stage all changes in the working directory (repository).
+    a = add -A
+    # Stage interactively, in "patches".
+    ap = add -p
+    # Unstage changes, but keep them in the working directory.
+    r = reset HEAD
+    # Unstage changes and reset working directory to the last commit.
+    rh = reset --hard HEAD
+    # Discard all changes and unpushed commits and reset to the last commit on
+    # the remote default branch.
+    rhm = "!git fetch origin && git reset --hard origin/main"
+
+    # Commits
+    # Pull in changes from the remote repository.
+    p = pull
+    # Undo the last commit.
 	undo = reset HEAD~
-        a = add -A
-        s = status --short --branch
-	p = "!f() { \
-        force=false; \
-        new_args=(); \
-        for arg in \"$@\"; do \
-            if [ \"$arg\" = \"--force\" ] || [ \"$arg\" = \"-f\" ]; then \
-                force=true; \
-                new_args+=(--force-with-lease); \
-            else \
-                new_args+=(\"$arg\"); \
-            fi; \
-        done; \
-        if [ \"$force\" = true ]; then \
-            echo \"Warning: Force flag detected. Using --force-with-lease instead.\"; \
-            echo \"Executing: git push ${new_args[@]}\"; \
-            git push \"${new_args[@]}\"; \
-        else \
-            echo \"Executing: git push $@\"; \
-            git push \"$@\"; \
-        fi; \
-    }; f"
+    # Commit changes temporarily under a "WIP" commit message.
+    wip = "!git add -A && git commit -m 'WIP'"
+    # Push but use --force-with-lease instead of --force.
+    up = "!. ~/.githelpers && safe_git_push"
+    # Push to all unique remotes.
+    upa = "!git remote | xargs -L1 git push --all"
+    # Open a draft pull request for this branch on remote. (Requires hub CLI)
+    upr = pull-request --browse --push --assign courier-new --draft
+
+    # Git log
+	l = "!. ~/.githelpers && pretty_git_log"
+  	la = "!git l --all"
+  	lr = "!git l -30"
+
+    # Maintenance
+    nuke = "!. ~/.githelpers && nuke_merged"
+[pull]
+    # All branches will rebase on pull.
+	rebase = true
+[branch]
+    # Automatically set up new branches to rebase on pull. Technically redundant
+    # with the above, but I like to be explicit.
+	autoSetupRebase = always
+[commit]
+    # Display a diff of the changes in the commit message editor.
+    verbose = true
 [push]
+    # Automatically set up remote tracking branch when pushing to remote.
 	autoSetupRemote = true
+    # Also push any annotated tags that point to commits in this branch on push.
+	followTags = true
+[remote]
+    # When repository has multiple remotes, use `origin` as the default for push
+    # operations when remote is not specified.
+    pushDefault = origin
+[hub] # Requires hub CLI
+	protocol = https
+[include]
+    # Override default gitconfig with local settings, e.g. work email.
+    path = .gitconfig.local

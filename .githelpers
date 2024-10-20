@@ -1,0 +1,53 @@
+#!/bin/bash
+
+SHORT_HASH="%C(always,normal)%h%C(always,reset)"
+RELATIVE_TIME="%C(always,green)%ar%C(always,reset)"
+AUTHOR="%C(always,bold blue)%an%C(always,reset)"
+# AUTHOR_EMAIL="%C(always,blue)(%ae)%C(always,reset)"
+REFS="%C(always,magenta)%d%C(always,reset)"
+SUBJECT="%C(always,reset)%s"
+
+FORMAT="$SHORT_HASH $RELATIVE_TIME $AUTHOR|$REFS $SUBJECT"
+
+# Prettier git log with one-line colored, tabular format.
+pretty_git_log() {
+  git log --graph --pretty="tformat:$FORMAT" $* |
+    # Truncate everything up to the delimiter to 75 characters.
+    awk -F '|' '{ if (length($1) > 75) $1 = substr($1, 1, 75) "…"; print $1 "|" $2; }' |
+    column -t -s '|' |
+    less -XRS --quit-if-one-screen
+}
+
+# Push but make sure to use --force-with-lease instead of --force.
+safe_git_push() {
+  force=false
+  new_args=()
+  for arg in "$@"; do
+    if [ "$arg" = "--force" ] || [ "$arg" = "-f" ]; then
+      force=true
+      new_args+=(--force-with-lease)
+    else
+      new_args+=("$arg")
+    fi
+  done
+  if [ "$force" = true ]; then
+    echo "Warning: Force flag detected. Using --force-with-lease instead."
+    echo "Executing: git push ${new_args[@]}"
+    git push "${new_args[@]}"
+  else
+    echo "Executing: git push $@"
+    git push "$@"
+  fi
+}
+
+# Remove all local branches that have already been merged into the default branch.
+nuke_merged() {
+  # Prompt to confirm that the user is sure before proceeding.
+  read -p "This command will remove all local branches that have already been merged into the default branch. Are you sure you want to continue? (y/n) " -n 1 -r
+  echo
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    git branch --merged | grep -v \* | xargs git branch -D
+  else
+    echo "Aborting."
+  fi
+}
