@@ -14,6 +14,8 @@ alias subdirsize='find . -mindepth 1 -maxdepth 1 -type d -exec du -sh {} + | sor
 
 # Search command history for a term
 alias hg='history | grep'
+# Display entire command history
+alias history='history 0'
 
 # Set custom config file path for invokations of tldr
 alias tldr='tldr --config ~/dotfiles/.config/tldr.toml'
@@ -25,14 +27,18 @@ alias resource='exec zsh'
 # -----------------------------
 
 # Directory listing/traversal
-alias l="ls -lah"
+# -a: all files, including hidden files
+# -F: append indicator (one of */=>@|) to entries
+# -h: human-readable file sizes, instead of bytes
+# -l: long format (show permissions, owner, group, size, and timestamp)
+# -o: long format, but omit group
+alias l="ls -aFhlo"
 alias lds="ls -ld */"
 alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ~='cd ~'
 alias ~.='cd $(git rev-parse --show-toplevel)'
-
 
 # -----------------------------
 # Git
