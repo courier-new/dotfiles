@@ -20,10 +20,11 @@ alias history='history 0'
 # Set custom config file path for invocations of tldr
 alias tldr='tldr --config ~/dotfiles/.config/tldr.toml'
 
-alias resource='exec zsh'
 # Update Brewfile
 alias brewdump='brew bundle dump --no-vscode --force'
 
+# Reload shell
+alias reload='. ~/.zshrc'
 
 # -----------------------------
 # File system
