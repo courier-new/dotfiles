@@ -3,3 +3,30 @@ mk () { mkdir -p "$@" && cd "$@" }
 brewopen () {
     open "https://formulae.brew.sh/formula/$1"
 }
+
+gif () {
+    # If no file is specified, use the latest .mov file in ~/Desktop
+    if [[ -z "$1" || "$1" == "--delete" ]]; then
+        echo "No file specified. Converting the latest .mov file in ~/Desktop."
+        file=$(ls -t ~/Desktop/*.mov | head -n 1)
+    else
+        file="$1"
+        # Ensure the file exists
+        if [[ ! -f "$file" ]]; then
+            echo "File not found: $file"
+            return 1
+        fi
+    fi
+
+    # Based on https://gist.github.com/SheldonWangRJT/8d3f44a35c8d1386a396b9b49b43c385
+    output_file="${file%.*}.gif"
+    ffmpeg -y -i "$file" -v quiet -vf scale=iw/2:ih/2 -pix_fmt rgb8 -r 10 "$output_file" && gifsicle -O3 "$output_file" -o "$output_file"
+
+    echo "Converted $file to $output_file."
+
+    # If --delete flag is specified, also delete the original file
+    if [[ "$1" == "--delete" || "$2" == "--delete" ]]; then
+        echo "Deleting $file."
+        rm "$file"
+    fi
+}
