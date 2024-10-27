@@ -9,6 +9,9 @@ gif () {
     if [[ -z "$1" || "$1" == "--delete" ]]; then
         echo "No file specified. Converting the latest .mov file in ~/Desktop."
         file=$(ls -t ~/Desktop/*.mov | head -n 1)
+        if [[ -z "$file" ]]; then
+            return 1
+        fi
     else
         file="$1"
         # Ensure the file exists
